@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Header/>
     <router-view/>
   </div>
 </template>
@@ -30,3 +27,28 @@
   }
 }
 </style>
+
+<script>
+import Header from '@/components/Header.vue'
+
+export default {
+  components: {
+    Header
+  },
+  computed: {
+    didAutoLogout () {
+      return this.$store.getters.didAutoLogout
+    }
+  },
+  created () {
+    this.$store.dispatch('tryLogin')
+  },
+  watch: {
+    didAutoLogout (curValue, oldValue) {
+      if (curValue && curValue !== oldValue) {
+        this.$router.replace('/coaches')
+      }
+    }
+  }
+}
+</script>
