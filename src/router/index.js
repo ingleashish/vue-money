@@ -9,6 +9,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/auth',
+    meta: { requiresUnauth: true }
+  },
+  {
+    path: '/auth',
     name: 'Auth',
     component: Auth,
     meta: { requiresUnauth: true }
