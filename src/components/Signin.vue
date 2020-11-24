@@ -1,32 +1,14 @@
 <template>
   <b-container>
-    <b-form @submit.prevent="onSubmit" @reset.prevent="onReset" v-if="show">
-      <b-form-group id="input-group-1" label="First Name:" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="form.name"
-          type="test"
-          required
-          placeholder="Enter Name"
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group id="input-group-2" label="Last Name:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.lastName"
-          type="test"
-          required
-          placeholder="Enter last name"
-        ></b-form-input>
-      </b-form-group>
+    <b-form @submit.prevent='onSubmit' @reset.prevent='onReset' v-if="show">
       <b-form-group
-        id="input-group-3"
+        id="input-group-1"
         label="Email address:"
-        label-for="input-3"
+        label-for="input-1"
         description="We'll never share your email with anyone else."
       >
         <b-form-input
-          id="input-3"
+          id="input-1"
           v-model="form.email"
           type="email"
           required
@@ -34,13 +16,9 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group
-        id="input-group-4"
-        label="Your Password:"
-        label-for="input-4"
-      >
+      <b-form-group id="input-group-2" label="Your Password:" label-for="input-2">
         <b-form-input
-          id="input-4"
+          id="input-2"
           v-model="form.password"
           type="password"
           required
@@ -48,7 +26,8 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Signup</b-button>
+      <b-button type="submit" variant="primary">Signin</b-button>
+      <b-button type="button" to="/auth?signin=false" variant="primary">Signup</b-button>
     </b-form>
   </b-container>
 </template>
@@ -58,8 +37,6 @@ export default {
   data () {
     return {
       form: {
-        name: '',
-        lastName: '',
         email: '',
         password: ''
       },
@@ -79,7 +56,7 @@ export default {
       }
 
       try {
-        await this.$store.dispatch('signup', actionPayload)
+        await this.$store.dispatch('login', actionPayload)
         this.form.email = ''
         this.form.password = ''
         // const redirectUrl = '/' + (this.$route.query.redirect || 'coaches');
