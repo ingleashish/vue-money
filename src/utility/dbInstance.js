@@ -1,5 +1,7 @@
 import axios from 'axios'
 
-export const AxiosInstance = axios.create({
+const axiosDbInstance = axios.create({
   baseURL: 'https://vue-money-backend.firebaseio.com/'
 })
+
+export default axiosDbInstance
