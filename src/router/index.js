@@ -45,7 +45,7 @@ const router = new VueRouter({
 // Auth guard
 router.beforeEach(function (to, _, next) {
   if (to.meta.requiresAuth && !localStorage.getItem('token')) {
-    next('/')
+    next('/auth')
   } else {
     next()
   }
