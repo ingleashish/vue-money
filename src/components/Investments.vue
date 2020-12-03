@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <PortfolioTable v-bind:items="investmentList"/>
+    <PortfolioTable v-bind:items="investmentList" />
   </div>
 </template>
 
