@@ -9,6 +9,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/auth',
+    meta: { requiresUnauth: true }
+  },
+  {
+    path: '/auth',
     name: 'Auth',
     component: Auth,
     meta: { requiresUnauth: true }
@@ -40,7 +45,7 @@ const router = new VueRouter({
 // Auth guard
 router.beforeEach(function (to, _, next) {
   if (to.meta.requiresAuth && !localStorage.getItem('token')) {
-    next('/')
+    next('/auth')
   } else {
     next()
   }

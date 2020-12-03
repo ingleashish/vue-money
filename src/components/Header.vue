@@ -7,9 +7,8 @@
         <b-nav-item to="/about">About</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item v-if="isLoggedIn" right>Sign out</b-nav-item>
-        <b-nav-item v-else right>Sign in</b-nav-item>
-        <b-nav-item right>Sign up</b-nav-item>
+        <b-nav-item v-if="isLoggedIn" @click="logout">Sign out</b-nav-item>
+        <b-nav-item v-else right to="/auth?signin=true">Sign in</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -20,6 +19,12 @@ export default {
   computed: {
     isLoggedIn () {
       return this.$store.getters.isAuthenticated
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+      this.$router.replace('/auth?signin=true')
     }
   }
 }
